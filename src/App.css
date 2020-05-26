@@ -86,8 +86,15 @@ body, .app {
 }
 
 .search-books-input-wrapper {
+  display: flex;
   flex: 1;
   background: #e9e;
+}
+.search-books-input-wrapper button {
+  width: 100px;
+  height: 60px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.16);
 }
 
 .search-books-bar input {
