@@ -55,7 +55,6 @@ export default class SearchBox extends Component {
   };
 
   newSelection = () => {
-    console.log("new seelection worked");
     this.setState({
       selected: true,
     });
@@ -73,7 +72,6 @@ export default class SearchBox extends Component {
       }
       return obj;
     });
-    console.log("result", result);
     this.setState({
       newBooks: result,
     });
@@ -81,7 +79,6 @@ export default class SearchBox extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((data) => {
-      console.log("getall data", data);
       this.setState({
         myReadsBooks: data,
       });
