@@ -8,7 +8,12 @@ export default function CurrentlyReading({ books, onUpdate }) {
       <div className="bookshelf-books">
         <ol className="books-grid">
           {books.map((book) => (
-            <Book key={book.id} bookdata={book} shelf='currentlyReading' onUpdate={onUpdate}/>
+            <Book
+              key={book.id}
+              bookdata={book}
+              shelf="currentlyReading"
+              onUpdate={onUpdate}
+            />
           ))}
         </ol>
       </div>

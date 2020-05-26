@@ -1,5 +1,5 @@
 import React from "react";
-import Book from '../Book';
+import Book from "../Book";
 
 export default function wantToRead({ books, onUpdate }) {
   return (
@@ -8,7 +8,12 @@ export default function wantToRead({ books, onUpdate }) {
       <div className="bookshelf-books">
         <ol className="books-grid">
           {books.map((book) => (
-            <Book key={book.id} bookdata={book} shelf='wantToRead' onUpdate={onUpdate}/>
+            <Book
+              key={book.id}
+              bookdata={book}
+              shelf="wantToRead"
+              onUpdate={onUpdate}
+            />
           ))}
         </ol>
       </div>

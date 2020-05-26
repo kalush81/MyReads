@@ -8,7 +8,7 @@ export default class SearchBox extends Component {
     query: "",
     newBooks: [],
     myReadsBooks: [],
-    selected: false
+    selected: false,
   };
 
   handleChange = (event) => {
@@ -46,43 +46,46 @@ export default class SearchBox extends Component {
           ? this.setState({
               newBooks: [{ id: "notFound", title: "not found" }],
             })
-          : this.setState({ newBooks: books }, this.updateBooks(books, this.state.myReadsBooks));
+          : this.setState(
+              { newBooks: books },
+              this.updateBooks(books, this.state.myReadsBooks)
+            );
       })
       .catch((err) => console.log("err while fetching new books", err));
-  }
+  };
 
   newSelection = () => {
-    console.log('new seelection worked')
+    console.log("new seelection worked");
     this.setState({
-      selected: true
-    })
-  }
+      selected: true,
+    });
+  };
 
   cleanUpnewBooks = () => {
     this.setState({ newBooks: [] });
-  }
+  };
+
+  updateBooks = (newBooks, myReadsBooks) => {
+    const result = newBooks.map(function(obj) {
+      const found = myReadsBooks.find((element) => element.id === obj.id);
+      if (found) {
+        obj.shelf = found.shelf;
+      }
+      return obj;
+    });
+    console.log("result", result);
+    this.setState({
+      newBooks: result,
+    });
+  };
 
   componentDidMount() {
     BooksAPI.getAll().then((data) => {
       console.log("getall data", data);
       this.setState({
-        myReadsBooks: data
-      })
-    })
-      
-  }
-  updateBooks = (newBooks, myReadsBooks) => {
-    const result = newBooks.map(function(obj) {
-      const found = myReadsBooks.find(element => element.id === obj.id)
-      if (found) { 
-      obj.shelf = found.shelf
-      }
-      return obj
-  })
-    console.log('result', result)
-    this.setState({
-      newBooks: result
-    })
+        myReadsBooks: data,
+      });
+    });
   }
 
   componentWillUnmount() {
@@ -92,7 +95,6 @@ export default class SearchBox extends Component {
   }
 
   render() {
-
     const { query, newBooks } = this.state;
     return (
       <div className="search-books">
@@ -123,11 +125,16 @@ export default class SearchBox extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {newBooks.map((book) => (
-              <Book key={book.id} bookdata={book} shelf={book.shelf} onUpdate={this.newSelection}/>
+              <Book
+                key={book.id}
+                bookdata={book}
+                shelf={book.shelf}
+                onUpdate={this.newSelection}
+              />
             ))}
           </ol>
         </div>
-        {this.state.selected && <Redirect to='/'/> }
+        {this.state.selected && <Redirect to="/" />}
       </div>
     );
   }

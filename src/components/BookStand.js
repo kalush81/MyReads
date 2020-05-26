@@ -9,13 +9,15 @@ export default class BookStand extends Component {
   state = {
     books: [],
   };
+
   componentDidMount() {
     BooksAPI.getAll().then((books) =>
       this.setState({
         books,
       })
     );
-  }
+  };
+
   updateBooks = (id, shelf) => {
     const updatedBooks = this.state.books.map((book) => {
       if (book.id === id) {
@@ -24,7 +26,7 @@ export default class BookStand extends Component {
         return book;
       }
     });
-    console.log(updatedBooks);
+
     this.setState({
       books: updatedBooks,
     });
@@ -63,5 +65,5 @@ export default class BookStand extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
