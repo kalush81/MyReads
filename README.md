@@ -1,3 +1,6 @@
 # MyReads Project
 
-![MyReads Prev] (./src/screenshot.png)
+This is the final assessment project for Udacity's React Fundamentals course. 
+
+
+![screenshot](./src/screenshot.png)
